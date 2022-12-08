@@ -42,7 +42,7 @@ const Login = () => {
           </FormControl>
 
           <Checkbox>
-            <CheckboxInput/>
+            <CheckboxInput type='checkbox' />
             <CheckboxLabel>
               Remember me
             </CheckboxLabel>

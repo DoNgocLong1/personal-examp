@@ -20,7 +20,7 @@ const TestList = () => {
     <TestList>
         {Array.from({ length: 6 }, (_, i) => i).map((item, index) => (
         <TestItem key={index} />
-      ))}
+        ))}
     </TestList>
   )
 }

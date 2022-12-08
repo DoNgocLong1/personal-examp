@@ -7,6 +7,7 @@ export const LoginContainer = styled.div`
     background-size: contain;
     background-repeat: no-repeat;
     height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: row-reverse;
     font-size: 20px;
@@ -100,7 +101,7 @@ export const Checkbox = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 0.7em;
-    gap: 0.5em
+    gap: 0.5em;
 `
 
 export const CheckboxInput = styled.input`
@@ -108,7 +109,9 @@ export const CheckboxInput = styled.input`
     height: 1.3em;
 `
 
-export const CheckboxLabel = styled.label``
+export const CheckboxLabel = styled.label`
+
+`
 
 
 export const LoginBtn = styled.button`

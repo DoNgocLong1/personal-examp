@@ -6,6 +6,13 @@ export const Dashborad = styled.div`
     display: flex;
     flex-direction: row;
     height: 100%;
+    width: 80%;
+    @media(max-width:63.9375em){
+        width: 100%;
+    }
+    @media(max-width:46.1875em){
+        
+    }
 `
 
 export const MoblieHeader = styled.header`
@@ -108,7 +115,7 @@ export const InfoImg = styled.div`
 
 export const InfoDetail = styled.div`
     display: flex;
-    positon: relative;
+    position: relative;
     height: 80%;
     flex-direction: column;
     align-items: flex-start;
@@ -188,7 +195,7 @@ export const SearchInputI = styled.div`
 
 export const Filter = styled.select`
     border: 1px solid #000000;
-    ouline: none;
+    outline: none;
     border-radius: 4px;
     flex:2;
     @media(max-width:63.9375em){

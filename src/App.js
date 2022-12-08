@@ -1,14 +1,23 @@
 
 import './App.css';
-import Dashboard from './layout/Dashboard/Dashboard';
-import Login from './layout/Login/Login';
-
+import {Routes, Route} from 'react-router-dom'
+import Dashboard from './page/Dashboard/Dashboard';
+import Exam from './page/Exam/Exam';
+import Login from './page/Login/Login';
+import Finish from './page/Finish/Finish';
+import {ShowProvider} from './page/Exam/ShowContext'
 function App() {
   return (
-    <div className="App">
-      {/* <Login/> */}
-      <Dashboard/>
-    </div>
+    <ShowProvider>
+        <div className="App">
+        <Routes>
+            <Route path='/' element = {<Login/>}/>
+            <Route path='/dashboard' element = {<Dashboard/>}/>
+            <Route path='/exam' element={<Exam />}/> 
+            <Route path='/finish' element={<Finish />}/>      
+        </Routes>
+      </div>
+    </ShowProvider>
   );
 }
 
