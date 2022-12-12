@@ -5,7 +5,6 @@ export const Dashborad = styled.div`
     font-size: 20px;
     display: flex;
     flex-direction: row;
-    height: 100%;
     width: 80%;
     @media(max-width:63.9375em){
         width: 100%;

@@ -26,7 +26,7 @@ function ShowProvider ({children}) {
         setCunrentListQuesetion,
         listQuestion,
         setListQuestion,
-        answerList, 
+        answerList,
         setAnswerList
     }
     return (

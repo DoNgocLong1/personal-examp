@@ -14,7 +14,6 @@ import {
 } from './TestItem.styled'
 const TestItem = ({data}) => {
     const context = useContext(ThemeContext)
-    console.log(data)
   return (  
     <Link to = '/exam'>
         <ItemWrapper onClick={() => {context.setListQuestion(context.quizs[data.id])}}>

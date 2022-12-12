@@ -305,7 +305,7 @@ const quizs = [
     {
       id: 4,
       title: "Science",
-      time: 10,
+      time: 400,
       maxPoint: 250,
       ratings: 3,
       difficulty: "easy",

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useContext} from 'react'
 import { ThemeContext } from 'page/Exam/ShowContext' 
 import { Link } from 'react-router-dom'
 import {

@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react'
+import React, {useState, useContext, useEffect, useRef} from 'react'
 import {ThemeContext} from '../Exam/ShowContext'
 import Pagination from '../../components/Pagination'
 import TestList from './components/TestList'
@@ -28,14 +28,59 @@ import {
   TestContainer
 } from './Dashboard.styled'
 const Dashboard = () => {
+  const filterRef = useRef()
   const [showMenu, setShowmenu] = useState(false)
-
   const context = useContext(ThemeContext)
-  console.log(context.quizs)
+  const [filter, setFilter] = useState('all')
+  let data = []
+  let copyArr = [...context.quizs]
+  console.log(copyArr.filter((item) => {
+    return item.difficulty === 'easy'
+  }))
   useEffect(() => {
-    context.setAnswerList([])
+    context.setAnswerList([])  
+    context.setCurrentQuestion(0)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
-  let data = context.quizs
+
+
+  //filter difficulty
+  switch(filter) {
+    case 'all' :
+      data = copyArr
+      break
+    case 'easy' :
+      data = copyArr.filter((item) => {
+        return item.difficulty === 'easy'
+      })
+      break
+    case 'medium' :
+      data = copyArr.filter((item) => {
+        return item.difficulty === 'medium'
+      })
+      break
+    case 'hard':
+      data = copyArr.filter((item) => {
+        return item.difficulty === 'hard'
+      })
+    break
+    default: data = copyArr
+  }
+
+  // search
+
+  const listQuiz = context.quizs
+  const [search, setSearch] = useState('')
+
+  console.log(listQuiz);
+  const findQuiz = () => {
+      data = listQuiz.filter((item) => {
+      return item.title.includes(search)
+    })
+    console.log(data);
+    return data
+  }
+   
   const openExam = (index) => {
     context.setListQuestion(index)
   }
@@ -78,20 +123,35 @@ const Dashboard = () => {
 
           {/* search */}
           <Search>
-            <SearchInput type="text" placeholder='Search' id='search' />
+            <SearchInput 
+            type="text" 
+            placeholder='Search' 
+            id='search'
+            value = {search}
+            onChange={(e) => setSearch(e.target.value)} 
+            />
             <SearchLabel htmlFor="search">
-              <SearchInputI className="fas fa-search"/>
+              <SearchInputI 
+              className="fas fa-search"
+              onClick={findQuiz}
+              />
             </SearchLabel>
           </Search>
             {/* filter */}
-          <Filter id = "level">
-
-            <FilterOption value='difficult'>
-              Difficult
+          <Filter id = "level" 
+          ref={filterRef}
+          onChange={() => setFilter(filterRef.current.value)}
+          >
+            <FilterOption value='all'>
+              All level
             </FilterOption>
 
-            <FilterOption value='normal'>
-              Normal
+            <FilterOption value='hard'>
+              Hard
+            </FilterOption>
+
+            <FilterOption value='medium'>
+              Medium
             </FilterOption>
 
             <FilterOption value='easy'>

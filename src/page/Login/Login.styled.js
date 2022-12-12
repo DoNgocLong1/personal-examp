@@ -71,6 +71,14 @@ export const CameraImg = styled.img`
     height: 4em;
 `
 
+
+export const FormControlWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+`
+
+
 export const FormControl = styled.div`
     display: flex;
     border-radius: 0.2em;
@@ -90,6 +98,14 @@ export const FormInput = styled.input`
     outline: none;
     font-size: 0.7em;
 `
+
+
+export const ErrorMessage = styled.span`
+    font-size: 0.7em;
+    color: red;
+    background-color: transparent;
+`
+
 
 export const LabelIcon = styled.i`
     font-size: 1.5em;

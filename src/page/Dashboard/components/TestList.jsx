@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import TestItem from './TestItem/TestItem'
 const TestList = ({data}) => {
@@ -8,6 +8,7 @@ const TestList = ({data}) => {
     row-gap: 2em;
     column-gap: 2em;
     font-size: 17px;
+    height: 100%;
     @media(max-width:63.9375em){
       grid-template-columns: 1fr; 
       overflow-y: hidden;
@@ -16,9 +17,13 @@ const TestList = ({data}) => {
         
     }
     `
+    const [startItem, setStartItem] = useState(0)
+    const [LastItem, setLastItem] = useState(6)
+    const offsetList = data.slice(startItem,LastItem)
+
   return (
     <TestList>
-        {data.map((item, index) => (
+        {offsetList.map((item, index) => (
         <TestItem key={index} data = {item} />
         ))}
     </TestList>
