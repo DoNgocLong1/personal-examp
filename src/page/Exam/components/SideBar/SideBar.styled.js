@@ -30,20 +30,31 @@ export const Wrapper = styled.div`
     }
 `
 
-export const AnswerContainer = styled.div`
+export const QuestionContainer = styled.div`
     width: 100%;
     display: grid;
     grid-template-columns: repeat(5,1fr);
     row-gap: 1em;
     column-gap: 0.5em;
 `
-export const AnswerNumber = styled.button`
+export const QuestionNumber = styled.button`
     font-size: 0.8em;
     width: 100%;
     height: 100%;
     padding: 0.8em 0.3em;
     outline: none;
     border: 1px solid rgba(0,0,0,0.5);
+    background-color: ${props => 
+        props.isCheck ? '#B6B6B6' : 'transparent'
+    };
+`
+
+export const CurrentQuestionNumber = styled(QuestionNumber)`
+    background: #92FD9D;
+`
+
+export const QuestionAnswered = styled(QuestionNumber)`
+    background: #B6B6B6;
 `
 
 export const Button = styled.button`

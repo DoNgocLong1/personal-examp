@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import TestItem from './TestItem/TestItem'
-const TestList = () => {
+const TestList = ({data}) => {
     const TestList = styled.div`
     display: grid;
     grid-template-columns: repeat(2,1fr);
@@ -18,8 +18,8 @@ const TestList = () => {
     `
   return (
     <TestList>
-        {Array.from({ length: 6 }, (_, i) => i).map((item, index) => (
-        <TestItem key={index} />
+        {data.map((item, index) => (
+        <TestItem key={index} data = {item} />
         ))}
     </TestList>
   )

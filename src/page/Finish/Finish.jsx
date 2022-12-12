@@ -1,4 +1,6 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
+import { ThemeContext } from 'page/Exam/ShowContext' 
+import { Link } from 'react-router-dom'
 import {
     FinishPage,
     FinishBoard,
@@ -12,41 +14,66 @@ import {
     FinishBtn
 } from './Finish.styled'
 const Finish = () => {
+    let countCorrectAnswer = 0
+    let countIncorrectAnswer = 0
+    let countNotAnswer = 0
+    let totalScore = 0
+    const context = useContext(ThemeContext)
+    const questions = context.listQuestion.questions
+    const maxPoint = context.listQuestion.maxPoint
+    const answers = context.answerList
+    const totalQuestion = questions.length
+    console.log(questions)
+    console.log(answers)
+    questions.forEach((question, questionIndex) => {
+        const checkIsAnswer = answers.some((answer) => {
+            return questionIndex === answer.id
+        })
+        if(!checkIsAnswer) countNotAnswer++
+        const checkCorrectAnswer = answers.some((answer) => {
+            return answer.answer === question.correctAnswer
+        })
+        if(checkCorrectAnswer) countCorrectAnswer++
+    })
+    countIncorrectAnswer = totalQuestion - countNotAnswer - countCorrectAnswer
+    totalScore = (maxPoint/totalQuestion) * countCorrectAnswer
   return (
     <FinishPage>
         <FinishBoard>
-            <FinishBoardTitle> Kiểm tra bảo mật an toàn thông tin 2 </FinishBoardTitle>
+            <FinishBoardTitle> {context.listQuestion.title} </FinishBoardTitle>
             <FinishInfo>
                 <InfoContainer>
 
                     <Wrapper>
                         <FinishContent>Số câu trả lời đúng: </FinishContent>
-                        <FinishResult>12</FinishResult>
+                        <FinishResult>{countCorrectAnswer}</FinishResult>
                     </Wrapper>
 
                     <Wrapper>
                         <FinishContent>Số câu trả lời sai: </FinishContent>
-                        <FinishResult>3</FinishResult>
+                        <FinishResult>{countIncorrectAnswer}</FinishResult>
                     </Wrapper>
 
                     <Wrapper>
                         <FinishContent>Số câu chưa trả lời : </FinishContent>
-                        <FinishResult>1</FinishResult>
+                        <FinishResult>{countNotAnswer}</FinishResult>
                     </Wrapper>
 
                     <Wrapper>
                         <FinishContent>Tổng số câu hỏi: </FinishContent>
-                        <FinishResult>16</FinishResult>
+                        <FinishResult>{totalQuestion}</FinishResult>
                     </Wrapper>
 
                 </InfoContainer>  
 
                 <Total>
                 <FinishContent>Điểm số: </FinishContent>
-                        <FinishResult>120/160</FinishResult>
+                        <FinishResult>{totalScore}/{maxPoint}</FinishResult>
                 </Total>
             </FinishInfo>
-            <FinishBtn>Dashboard</FinishBtn>
+            <Link to='/dashboard'>
+                <FinishBtn>Dashboard</FinishBtn>
+            </Link>
         </FinishBoard>
     </FinishPage>
   )

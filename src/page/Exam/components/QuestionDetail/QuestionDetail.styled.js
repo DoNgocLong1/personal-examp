@@ -42,7 +42,7 @@ export const AnswerWrapper = styled.div`
 `
 
 
-export const AnswerCheckbox = styled.input`
+export const AnswerRadio = styled.input`
     width: 1.5em;
     height: 1.5em;
 `

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import {ThemeContext} from '../../ShowContext'
 import {Wrapper,
         Tittle,
         CountDown,
@@ -7,9 +8,10 @@ import {Wrapper,
         CountDownSticky,
 } from './QuestionHeader.styled'
 const ExamDetail = () => {
+  const context = useContext(ThemeContext)
   return (
     <Wrapper>
-        <Tittle>Kiểm tra</Tittle>
+        <Tittle>{context.listQuestion.title}</Tittle>
         <CountDown>Còn lại: 
             <CountDownNumber> 14 </CountDownNumber> phút
             <CountDownNumber> 22 </CountDownNumber> giây

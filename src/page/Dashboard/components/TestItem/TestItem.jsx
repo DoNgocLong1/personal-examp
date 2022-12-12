@@ -1,4 +1,6 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import {Link} from 'react-router-dom'
+import { ThemeContext } from 'page/Exam/ShowContext' 
 import time from '../../../../assets/images/time.png'
 import score from '../../../../assets/images/score.png'
 import star from '../../../../assets/images/star.png'
@@ -10,25 +12,30 @@ import {
     TestInfoText,
     TestInfoStar
 } from './TestItem.styled'
-const TestItem = () => {
-  return (
-    <ItemWrapper>
-        <TestTitle>
-            Kiểm tra
-        </TestTitle>
-        <TestInfo>
-            <TestInfoImg src = {time}/>
-            <TestInfoText>
-                7 Phút
-            </TestInfoText>
+const TestItem = ({data}) => {
+    const context = useContext(ThemeContext)
+    console.log(data)
+  return (  
+    <Link to = '/exam'>
+        <ItemWrapper onClick={() => {context.setListQuestion(context.quizs[data.id])}}>
+            <TestTitle>
+                {data.title}
+            </TestTitle>
+            <TestInfo>
+                <TestInfoImg src = {time}/>
+                <TestInfoText>
+                    {data.time}
+                </TestInfoText>
 
-            <TestInfoImg src = {score}/>
-            <TestInfoText>
-                200/250 Điểm
-            </TestInfoText>
-        </TestInfo>
-        <TestInfoStar src={star}/>
-    </ItemWrapper>
+                <TestInfoImg src = {score}/>
+                <TestInfoText>
+                    200/{data.maxPoint}
+                </TestInfoText>
+            </TestInfo>
+            <TestInfoStar src={star}/>
+        </ItemWrapper>
+    </Link>
+   
   )
 }
 

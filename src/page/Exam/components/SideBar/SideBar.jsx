@@ -1,20 +1,42 @@
 import React,{ useContext} from 'react'
-import {ThemeContext} from '../../ShowContext'
+import { ThemeContext } from 'page/Exam/ShowContext'
+import { Link } from 'react-router-dom'
 import {Wrapper,
-        AnswerContainer,
-        AnswerNumber,
-        Button
+        QuestionContainer,
+        QuestionNumber,
+        Button,
+        CurrentQuestionNumber,
 } from './SideBar.styled'
 const SideBar = () => {
-  const contex = useContext(ThemeContext)
+  const context = useContext(ThemeContext)
+  const totalQuestion = context.listQuestion.questions.length
+  const currentQuestion = context.currentQuestion
+  const listAnswered = context.answerList
+  const isCheckAnswered = (index) => {
+    const includeAnswer = listAnswered.find((item) => {
+      return item.id === index
+    }) 
+    if(includeAnswer) return true
+    return false
+  }
   return (
-    <Wrapper isShow = {contex.showListQuestion}>
-      <AnswerContainer >
-        {Array.from({ length: 20 }, (_, i) => i).map((item, index) => (
-          <AnswerNumber key = {index}>{index + 1}</AnswerNumber>
+    <Wrapper isShow = {context.showListQuestion}>
+      <QuestionContainer >
+        {Array.from({ length: totalQuestion }, (_, i) => i).map((item, index) => (
+          index === currentQuestion ?
+          <CurrentQuestionNumber key = {index}>{index + 1}</CurrentQuestionNumber>
+          : 
+          <QuestionNumber  
+          isCheck = {isCheckAnswered(index)}
+          key = {index} 
+          onClick = {() => context.setCurrentQuestion(index) }> {index + 1} 
+          </QuestionNumber>
         ))}
-      </AnswerContainer>
-      <Button>Nộp bài</Button>
+        
+      </QuestionContainer>
+      <Link to='/finish'>
+        <Button>Nộp bài</Button>
+      </Link>
     </Wrapper>
   )
 }

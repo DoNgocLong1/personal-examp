@@ -1,5 +1,6 @@
 import React from 'react'
 import img from '../../assets/images/photo.png'
+import { Link } from 'react-router-dom'
 /* import user from '../../assets/images/user.png'
 import password from '../../assets/images/password.png' */
 //rafce
@@ -47,10 +48,11 @@ const Login = () => {
               Remember me
             </CheckboxLabel>
           </Checkbox>
-
+        <Link to='/dashboard'>
           <LoginBtn>
             LOGIN
           </LoginBtn>
+        </Link>
         </FormWrapper>
       </Wrapper>
     </LoginContainer>

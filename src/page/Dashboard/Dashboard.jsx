@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
+import {ThemeContext} from '../Exam/ShowContext'
 import Pagination from '../../components/Pagination'
 import TestList from './components/TestList'
 import menu from '../../assets/images/menu.png'
@@ -29,10 +30,15 @@ import {
 const Dashboard = () => {
   const [showMenu, setShowmenu] = useState(false)
 
+  const context = useContext(ThemeContext)
+  console.log(context.quizs)
   useEffect(() => {
-
-  })
-  console.log(showMenu)
+    context.setAnswerList([])
+  },[])
+  let data = context.quizs
+  const openExam = (index) => {
+    context.setListQuestion(index)
+  }
   return (
     <Dashborad>
       <MoblieHeader>     
@@ -96,7 +102,10 @@ const Dashboard = () => {
 
         {/* test list */}
         <TestContainer>
-          <TestList/>
+          <TestList 
+          data = {data} 
+          onClick = {openExam}
+          />
         </TestContainer>
         {/* pagination */}
         <Pagination/>
