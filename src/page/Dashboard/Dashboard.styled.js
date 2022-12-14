@@ -144,6 +144,8 @@ export const LogoutBtn = styled.div`
 `
 
 export const DashboardContainer = styled.div`
+    display: flex;
+    flex-direction: column;
     background-color: #C4C4C4;
     padding: 1.5em 2em;
     width: 100%;

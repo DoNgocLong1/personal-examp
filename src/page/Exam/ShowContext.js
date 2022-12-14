@@ -8,6 +8,8 @@ function ShowProvider ({children}) {
     const [currentListQuestion, setCunrentListQuesetion] = useState(0)
     const [listQuestion, setListQuestion] = useState(quizs[0])
     const [answerList, setAnswerList] = useState([])
+    const [startItem, setStartItem] = useState(0)
+    const [lastItem, setLastItem] = useState(6)
     const show = () => {
         setShowListQuestion(true) 
     }
@@ -27,7 +29,11 @@ function ShowProvider ({children}) {
         listQuestion,
         setListQuestion,
         answerList,
-        setAnswerList
+        setAnswerList,
+        startItem,
+        setStartItem,
+        lastItem,
+        setLastItem    
     }
     return (
         <ThemeContext.Provider value = {value}>

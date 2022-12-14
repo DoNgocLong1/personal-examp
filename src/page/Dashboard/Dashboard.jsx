@@ -1,6 +1,6 @@
 import React, {useState, useContext, useEffect, useRef} from 'react'
 import {ThemeContext} from '../Exam/ShowContext'
-import Pagination from '../../components/Pagination'
+import Pagination from '../../components/Pagination/Pagination'
 import TestList from './components/TestList'
 import menu from '../../assets/images/menu.png'
 import {
@@ -32,40 +32,12 @@ const Dashboard = () => {
   const [showMenu, setShowmenu] = useState(false)
   const context = useContext(ThemeContext)
   const [filter, setFilter] = useState('all')
-  let data = []
-  let copyArr = [...context.quizs]
-  console.log(copyArr.filter((item) => {
-    return item.difficulty === 'easy'
-  }))
+  const [dataSearch, setDataSearch] = useState(context.quizs)
   useEffect(() => {
     context.setAnswerList([])  
     context.setCurrentQuestion(0)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
-
-
-  //filter difficulty
-  switch(filter) {
-    case 'all' :
-      data = copyArr
-      break
-    case 'easy' :
-      data = copyArr.filter((item) => {
-        return item.difficulty === 'easy'
-      })
-      break
-    case 'medium' :
-      data = copyArr.filter((item) => {
-        return item.difficulty === 'medium'
-      })
-      break
-    case 'hard':
-      data = copyArr.filter((item) => {
-        return item.difficulty === 'hard'
-      })
-    break
-    default: data = copyArr
-  }
 
   // search
 
@@ -73,9 +45,9 @@ const Dashboard = () => {
   const [search, setSearch] = useState('')
 
   console.log(listQuiz);
-  const findQuiz = () => {
-      data = listQuiz.filter((item) => {
-      return item.title.includes(search)
+  const findQuiz = (search) => {
+      const data = listQuiz.filter((item) => {
+      return item.title.toLowerCase().includes(search.toLowerCase())
     })
     console.log(data);
     return data
@@ -133,13 +105,17 @@ const Dashboard = () => {
             <SearchLabel htmlFor="search">
               <SearchInputI 
               className="fas fa-search"
-              onClick={findQuiz}
+              onClick={() => {
+                setDataSearch(findQuiz(search))
+                setFilter('all')
+              }}
               />
             </SearchLabel>
           </Search>
             {/* filter */}
           <Filter id = "level" 
           ref={filterRef}
+          value = {filter}
           onChange={() => setFilter(filterRef.current.value)}
           >
             <FilterOption value='all'>
@@ -163,8 +139,10 @@ const Dashboard = () => {
         {/* test list */}
         <TestContainer>
           <TestList 
-          data = {data} 
+          search = {search}
+          data = {dataSearch} 
           onClick = {openExam}
+          rule = {filter}
           />
         </TestContainer>
         {/* pagination */}

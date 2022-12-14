@@ -2,7 +2,7 @@ const quizs = [
     {
       id: 0,
       title: "Arts & Literature",
-      time: 300,
+      time: 400,
       maxPoint: 500,
       ratings: 3,
       difficulty: "easy",

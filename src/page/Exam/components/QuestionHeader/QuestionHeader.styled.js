@@ -34,7 +34,7 @@ export const CountSticky = styled.span`
 `
 
 export const CountDownSticky = styled.span`
-    min-width: 70%;
+    width: ${(props) => (props.width ? `${props.width}%` : "100%")};
     background: #41C54E;
     height: 100%;
     position: absolute;

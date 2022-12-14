@@ -1,32 +1,41 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React, { useContext, useEffect, useState } from 'react'
 import TestItem from './TestItem/TestItem'
-const TestList = ({data}) => {
-    const TestList = styled.div`
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    row-gap: 2em;
-    column-gap: 2em;
-    font-size: 17px;
-    height: 100%;
-    @media(max-width:63.9375em){
-      grid-template-columns: 1fr; 
-      overflow-y: hidden;
-    }
-    @media(max-width:46.1875em){
-        
-    }
-    `
-    const [startItem, setStartItem] = useState(0)
-    const [LastItem, setLastItem] = useState(6)
-    const offsetList = data.slice(startItem,LastItem)
-
+import { ThemeContext } from 'page/Exam/ShowContext'
+import {TestListContainer, EmptyItem} from './TestList.styled'
+const TestList = ({data, rule, search}) => {
+  
+  let dataList = []
+  let copyArr = [...data]
+  switch(rule) {
+    case 'all' :
+      dataList = copyArr
+      break
+    case 'easy' :
+      dataList = copyArr.filter((item) => {
+        return item.difficulty === 'easy'
+      })
+      break
+    case 'medium' :
+      dataList = copyArr.filter((item) => {
+        return item.difficulty === 'medium'
+      })
+      break
+    case 'hard':
+      dataList = copyArr.filter((item) => {
+        return item.difficulty === 'hard'
+      })
+    break
+    default: dataList = copyArr
+  }
+    const context = useContext(ThemeContext)
+    
+    const offsetList = dataList.slice(context.startItem, context.lastItem)
   return (
-    <TestList>
+    <TestListContainer>
         {offsetList.map((item, index) => (
         <TestItem key={index} data = {item} />
         ))}
-    </TestList>
+    </TestListContainer>
   )
 }
 

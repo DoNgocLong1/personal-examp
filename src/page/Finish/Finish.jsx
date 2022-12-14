@@ -31,12 +31,16 @@ const Finish = () => {
         })
         if(!checkIsAnswer) countNotAnswer++
         const checkCorrectAnswer = answers.some((answer) => {
-            return answer.answer === question.correctAnswer
+            return answer.answer === question.correctAnswer && questionIndex === answer.id
         })
         if(checkCorrectAnswer) countCorrectAnswer++
     })
     countIncorrectAnswer = totalQuestion - countNotAnswer - countCorrectAnswer
     totalScore = (maxPoint/totalQuestion) * countCorrectAnswer
+    console.log(countCorrectAnswer);
+    console.log(countIncorrectAnswer);
+    console.log(countNotAnswer);
+
   return (
     <FinishPage>
         <FinishBoard>

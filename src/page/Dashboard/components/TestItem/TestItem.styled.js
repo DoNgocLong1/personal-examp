@@ -13,7 +13,6 @@ export const TestTitle = styled.p`
     font-size: 0.9em;
     color: #000000;
     font-weight: 500;
-    pdding: 0 0.5em;
     text-align: left;
 
 `
