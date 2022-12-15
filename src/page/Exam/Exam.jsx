@@ -6,11 +6,11 @@ import {ExamContainer,
 } from './Exam.styled'
 import {ThemeContext} from './ShowContext'
 const Exam = () => {
-  const contex = useContext(ThemeContext)
+  const context = useContext(ThemeContext)
   return (
     <ExamContainer>
       <Question/>
-      <Layout isShow = {contex.showListQuestion} onClick = {contex.hide}/>
+      <Layout isShow = {context.showListQuestion} onClick = {context.hide}/>
       <SideBar/>
     </ExamContainer>
   )

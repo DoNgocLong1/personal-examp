@@ -14,7 +14,7 @@ function ShowProvider ({children}) {
         setShowListQuestion(true) 
     }
     const hide = () => {
-        setShowListQuestion(false) 
+        setShowListQuestion(false)
     }
     console.log(answerList)
     const value = {

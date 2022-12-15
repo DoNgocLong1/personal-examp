@@ -32,8 +32,7 @@ const ExamDetail = ({quizTime}) => {
         navigate('/finish')
     }
   },[navigate, timeRemaining])
-
-  
+ console.log(quizTime);
   return (
     
     <Wrapper>
@@ -42,7 +41,11 @@ const ExamDetail = ({quizTime}) => {
             <CountDownNumber> {minutes} </CountDownNumber> phút
             <CountDownNumber> {seconds} </CountDownNumber> giây
         </CountDown>
-        <CountSticky><CountDownSticky width = {percentTimeRemaining}/></CountSticky>
+        <CountSticky>
+          <CountDownSticky 
+          time = {quizTime}
+          />
+        </CountSticky>
     </Wrapper>
   )
 }

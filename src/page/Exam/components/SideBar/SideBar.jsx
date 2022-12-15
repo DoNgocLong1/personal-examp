@@ -29,7 +29,10 @@ const SideBar = () => {
           <QuestionNumber  
           isCheck = {isCheckAnswered(index)}
           key = {index} 
-          onClick = {() => context.setCurrentQuestion(index) }> {index + 1} 
+          onClick = {() => {
+            context.setCurrentQuestion(index)
+            context.hide()
+          } }> {index + 1} 
           </QuestionNumber>
         ))}
         

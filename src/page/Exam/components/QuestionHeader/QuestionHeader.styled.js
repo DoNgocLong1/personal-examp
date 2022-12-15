@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const Wrapper = styled.div`
     display: flex;
@@ -33,8 +33,20 @@ export const CountSticky = styled.span`
     position: relative;
 `
 
+
+const quizCountdown = keyframes`
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0%;
+  }
+`
+
+
 export const CountDownSticky = styled.span`
-    width: ${(props) => (props.width ? `${props.width}%` : "100%")};
+    animation: ${quizCountdown} ${(props) => `${props.time}`}s linear ;
     background: #41C54E;
     height: 100%;
     position: absolute;
