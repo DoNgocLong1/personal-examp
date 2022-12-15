@@ -19,4 +19,5 @@ export const TestListContainer = styled.div`
 export const EmptyItem = styled.div`
   width: 100%;
   font-size: 1em;
+  text-align: center;
 `

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import TestItem from './TestItem/TestItem'
 import { ThemeContext } from 'page/Exam/ShowContext'
 import {TestListContainer, EmptyItem} from './TestList.styled'
@@ -30,9 +30,15 @@ const TestList = ({data, rule, search}) => {
     const context = useContext(ThemeContext)
     
     const offsetList = dataList.slice(context.startItem, context.lastItem)
+    console.log(offsetList);
+    console.log(offsetList === []);
   return (
     <TestListContainer>
-        {offsetList.map((item, index) => (
+        {offsetList.length === 0 ? 
+        <EmptyItem>
+          Can't not find '{search}'
+        </EmptyItem>:
+        offsetList.map((item, index) => (
         <TestItem key={index} data = {item} />
         ))}
     </TestListContainer>
